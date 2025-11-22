@@ -1,49 +1,72 @@
 # SmartBite – Restaurant Ordering System
 
-SmartBite is a responsive web application built with React that allows users to
-browse a restaurant menu, add items to a cart, place an order, and track the
-order status via a dynamic tracking page.
+SmartBite is a modern, responsive restaurant ordering system built using ReactJS.  
+It allows customers to browse a categorized menu, add items to their cart, place orders, and track the status of each order—all in a clean and intuitive interface.
 
 ---
 
-## 🚀 Live Demo
-https://smartbite-restaurant.netlify.app/
+## 🚀 Live Demo  
+### ✔ Deployed on Netlify  
+👉 https://resilient-figolla-694906.netlify.app/
 
 ---
 
 ## ⭐ Features
 
-- Menu display grouped by category (starters, mains, desserts, drinks)
-- Add items to cart with quantity updates and live total
-- Place orders with auto-generated Order ID
-- Dynamic order tracking page (`/order/:orderId`)
-- Responsive layout (desktop + mobile)
-- Clean UI built with React & Bootstrap
-- Client-side routing using React Router
+### 🍽 Menu System  
+- Organized categories (Mains, Starters, Drinks, Desserts)  
+- High-quality images for each item  
+- Item descriptions and prices  
+
+### 🛒 Cart System  
+- Add items to cart  
+- Change quantity or remove items  
+- Live total price calculation  
+- Smooth and responsive layout  
+
+### 📦 Order Placement & Tracking  
+- Unique order ID generated automatically  
+- Dynamic order tracking flow:  
+  `Received → Preparing → Out for Delivery → Delivered`  
+- Clean and organized order summary  
+
+### 📱 Fully Responsive  
+- Works on **desktop**, **tablet**, and **mobile**  
+- Optimized layout using Bootstrap + custom CSS  
+
+### 🔀 Client-side Routing  
+- Built with **React Router DOM**  
+- Smooth navigation between pages  
+- Netlify redirect rules implemented for SPA routing  
 
 ---
 
 ## 🛠 Technologies Used
 
-- **ReactJS**
-- **React Router DOM**
-- **Bootstrap 5**
-- **JavaScript (ES6+)**
-- **HTML5 & CSS3**
-- **Context API** for cart and order state
+### **Frontend**
+- ReactJS  
+- React Router DOM  
+- Bootstrap 5  
+- Custom CSS  
+
+### **State Management**
+- React Context API (for cart & order storage)  
+
+### **Build & Deployment**
+- Node.js  
+- Create React App  
+- Netlify (Live hosting)
 
 ---
 
 ## 📦 Getting Started
 
-### ✔ Prerequisites
-
-- Node.js and npm installed on your machine
+### ✔ Prerequisites  
+Make sure you have **Node.js** and **npm** installed.
 
 ### ✔ Installation
 
+Clone the repository:
+
 ```bash
 git clone https://github.com/mohamadAlijomaa25/smartbite-restaurant.git
-cd smartbite-restaurant
-npm install
-npm start
