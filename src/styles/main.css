@@ -1,0 +1,99 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* smaller padding on mobile for sections, etc. */
+@media (max-width: 576px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Desktop behavior */
+@media (min-width: 992px) {
+  /* LEFT SIDE (menu) → scrolls with full page */
+  .menu-scroll {
+    overflow: visible;
+    max-height: none;
+    padding-right: 0;
+  }
+
+  /* RIGHT SIDE (cart) → sticky + internal scroll */
+  .cart-scroll {
+    position: sticky;
+    top: 100px; /* adjust depending on your navbar height */
+    max-height: calc(100vh - 120px); /* cart height in viewport */
+    overflow-y: auto; /* cart content scrolls inside */
+    padding-right: 6px;
+  }
+}
+/* ---------- HERO SECTION STYLING ---------- */
+
+.hero-section {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  color: #fff;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(0, 0, 0, 0.2), transparent),
+              rgba(0, 0, 0, 0.6);
+}
+
+.hero-content {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* Glassmorphism hero card */
+.hero-card {
+  max-width: 560px;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: hero-fade-in 0.9s ease-out forwards;
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* Fade-in animation */
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile tweaks */
+@media (max-width: 767.98px) {
+  .hero-content {
+    justify-content: center;
+  }
+
+  .hero-card {
+    padding: 1.75rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  .hero-card .display-4 {
+    font-size: 2.2rem;
+  }
+}
