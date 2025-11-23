@@ -1,7 +1,7 @@
 const menuItems = [
-  // -----------------
+ 
   // MAIN DISHES
-  // -----------------
+ 
   {
     id: 1,
     name: "Margherita Pizza",
@@ -43,9 +43,9 @@ const menuItems = [
     image: "/images/pep.jpg",
   },
 
-  // -----------------
+  
   // STARTERS
-  // -----------------
+ 
   {
     id: 6,
     name: "Caesar Salad",
@@ -79,9 +79,9 @@ const menuItems = [
     image: "/images/rings.jpg",
   },
 
-  // -----------------
+
   // DESSERTS
-  // -----------------
+  
   {
     id: 10,
     name: "Chocolate Lava Cake",
@@ -107,9 +107,9 @@ const menuItems = [
     image: "/images/donats.jpg",
   },
 
-  // -----------------
+ 
   // DRINKS
-  // -----------------
+ 
   {
     id: 13,
     name: "Fresh Orange Juice",

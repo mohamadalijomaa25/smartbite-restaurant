@@ -31,7 +31,7 @@ const OrderTracking = () => {
     );
   }
 
-  // Simple demo: always show it as "preparing"
+  
   const activeIndex = 1;
 
   return (

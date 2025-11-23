@@ -3,7 +3,7 @@ body {
     sans-serif;
 }
 
-/* smaller padding on mobile for sections, etc. */
+
 @media (max-width: 576px) {
   .container {
     padding-left: 1rem;
@@ -11,25 +11,25 @@ body {
   }
 }
 
-/* Desktop behavior */
+
 @media (min-width: 992px) {
-  /* LEFT SIDE (menu) → scrolls with full page */
+  
   .menu-scroll {
     overflow: visible;
     max-height: none;
     padding-right: 0;
   }
 
-  /* RIGHT SIDE (cart) → sticky + internal scroll */
+  
   .cart-scroll {
     position: sticky;
-    top: 100px; /* adjust depending on your navbar height */
-    max-height: calc(100vh - 120px); /* cart height in viewport */
-    overflow-y: auto; /* cart content scrolls inside */
+    top: 100px; 
+    max-height: calc(100vh - 120px); 
+    overflow-y: auto;
     padding-right: 6px;
   }
 }
-/* ---------- HERO SECTION STYLING ---------- */
+
 
 .hero-section {
   min-height: 100vh;
@@ -54,7 +54,7 @@ body {
   align-items: center;
 }
 
-/* Glassmorphism hero card */
+
 .hero-card {
   max-width: 560px;
   padding: 2.5rem;
@@ -69,7 +69,7 @@ body {
   transform: translateY(12px);
 }
 
-/* Fade-in animation */
+
 @keyframes hero-fade-in {
   from {
     opacity: 0;
@@ -81,7 +81,7 @@ body {
   }
 }
 
-/* Mobile tweaks */
+
 @media (max-width: 767.98px) {
   .hero-content {
     justify-content: center;

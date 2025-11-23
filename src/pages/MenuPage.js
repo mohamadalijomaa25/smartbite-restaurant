@@ -30,10 +30,10 @@ const MenuPage = () => {
         </div>
       </div>
 
-      {/* TWO SCROLLABLE COLUMNS ON DESKTOP */}
+      
       <div className="row g-4">
 
-        {/* LEFT COLUMN — menu items */}
+        
         <div className="col-lg-8">
           <div className="menu-scroll">
             {categories.map((category) => (
@@ -81,15 +81,15 @@ const MenuPage = () => {
           </div>
         </div>
 
-        {/* RIGHT COLUMN — cart */}
+        
         <div className="col-lg-4">
 
-          {/* Desktop version — scrollable */}
+          
           <div className="cart-scroll d-none d-lg-block">
             <CartSummary onPlaceOrder={handlePlaceOrder} />
           </div>
 
-          {/* Mobile version — appears BELOW items */}
+          
           <div className="d-lg-none mt-4">
             <CartSummary onPlaceOrder={handlePlaceOrder} />
           </div>

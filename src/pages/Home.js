@@ -3,23 +3,23 @@ import { Link } from "react-router-dom";
 import menuItems from "../data/menuItems";
 
 const Home = () => {
-  // Pick some items for the "Best Seller" slideshow (any with an image)
+ 
   const bestSellerItems = menuItems.filter((item) => item.image);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-advance slideshow
+ 
   useEffect(() => {
     if (bestSellerItems.length === 0) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % bestSellerItems.length);
-    }, 3000); // change every 3 seconds
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [bestSellerItems.length]);
 
-  // 🖼️ Preload all images to avoid delay when switching
+ 
   useEffect(() => {
     bestSellerItems.forEach((item) => {
       const img = new Image();
@@ -32,14 +32,14 @@ const Home = () => {
 
   return (
     <main>
-      {/* HERO: SmartBite / McDonald's-style banner */}
+      
       <section
         className="py-5"
-        style={{ backgroundColor: "#ffffffff" }} // softer background
+        style={{ backgroundColor: "#ffffffff" }} 
       >
         <div className="container">
           <div className="row align-items-center g-4">
-            {/* LEFT: text */}
+            
             <div className="col-lg-6">
               <span
                 className="badge rounded-pill mb-3"
@@ -72,7 +72,7 @@ const Home = () => {
               </p>
             </div>
 
-            {/* RIGHT: Best Seller slideshow */}
+            
             <div className="col-lg-6">
               <div
                 className="card border-0 shadow-lg rounded-4 overflow-hidden"
@@ -88,7 +88,7 @@ const Home = () => {
                         width: "100%",
                         height: "260px",
                         objectFit: "cover",
-                        // removed transition to avoid visible delay vs text
+                        
                       }}
                     />
                   )}
@@ -119,7 +119,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* FEATURED DEALS */}
+      
       <section className="py-5 bg-light">
         <div className="container">
           <h2 className="h3 fw-bold mb-4 text-center">Featured Deals</h2>
@@ -179,7 +179,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
+      
       <section className="py-5">
         <div className="container">
           <h2 className="h3 fw-bold mb-4 text-center">How it works</h2>

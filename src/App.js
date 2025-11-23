@@ -12,7 +12,7 @@ import ScrollToTop from "./components/ScrollToTop";
 const App = () => {
   return (
     <div className="d-flex flex-column min-vh-100">
-      {/* Scroll reset on route change */}
+      
       <ScrollToTop />
 
       <Navbar />

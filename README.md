@@ -5,43 +5,43 @@ It allows customers to browse a categorized menu, add items to their cart, place
 
 ---
 
-## 🚀 Live Demo  
-### ✔ Deployed on Netlify  
-👉 https://resilient-figolla-694906.netlify.app/
+## Live Demo  
+### Deployed on Netlify  
+ https://resilient-figolla-694906.netlify.app/
 
 ---
 
-## ⭐ Features
+## Features
 
-### 🍽 Menu System  
+### Menu System  
 - Organized categories (Mains, Starters, Drinks, Desserts)  
 - High-quality images for each item  
 - Item descriptions and prices  
 
-### 🛒 Cart System  
+### Cart System  
 - Add items to cart  
 - Change quantity or remove items  
 - Live total price calculation  
 - Smooth and responsive layout  
 
-### 📦 Order Placement & Tracking  
+### Order Placement & Tracking  
 - Unique order ID generated automatically  
 - Dynamic order tracking flow:  
   `Received → Preparing → Out for Delivery → Delivered`  
 - Clean and organized order summary  
 
-### 📱 Fully Responsive  
+### Fully Responsive  
 - Works on **desktop**, **tablet**, and **mobile**  
 - Optimized layout using Bootstrap + custom CSS  
 
-### 🔀 Client-side Routing  
+### Client-side Routing  
 - Built with **React Router DOM**  
 - Smooth navigation between pages  
 - Netlify redirect rules implemented for SPA routing  
 
 ---
 
-## 🛠 Technologies Used
+## Technologies Used
 
 ### **Frontend**
 - ReactJS  
@@ -59,12 +59,12 @@ It allows customers to browse a categorized menu, add items to their cart, place
 
 ---
 
-## 📦 Getting Started
+## Getting Started
 
-### ✔ Prerequisites  
+### Prerequisites  
 Make sure you have **Node.js** and **npm** installed.
 
-### ✔ Installation
+### Installation
 
 Clone the repository:
 

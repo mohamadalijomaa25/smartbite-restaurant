@@ -14,7 +14,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // no backend, just simulate submit
+   
     setSubmitted(true);
   };
 
@@ -22,7 +22,7 @@ const Contact = () => {
     <div className="container py-5">
       <h1 className="mb-4">Contact Us</h1>
       <div className="row g-4">
-        {/* Contact Form */}
+        
         <div className="col-md-6">
           <form onSubmit={handleSubmit} className="card shadow-sm p-4">
             <div className="mb-3">
@@ -72,7 +72,7 @@ const Contact = () => {
           </form>
         </div>
 
-        {/* Info + Map */}
+        
         <div className="col-md-6">
           <div className="card shadow-sm p-4 h-100">
             <h5>Restaurant Info</h5>
@@ -88,7 +88,7 @@ const Contact = () => {
             <p>Sat - Sun: 12:00 - 00:00</p>
 
             <div className="mt-3">
-              {/* Real Google Maps Embed */}
+              
               <div className="ratio ratio-16x9 rounded-3 overflow-hidden">
                 <iframe
                   src="https://maps.google.com/maps?q=Baalbek%2C%20Lebanon&t=&z=13&ie=UTF8&iwloc=&output=embed"

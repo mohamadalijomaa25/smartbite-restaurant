@@ -3,7 +3,7 @@ import React from "react";
 const About = () => {
   return (
     <main>
-      {/* HERO SECTION */}
+      
       <section className="py-5 bg-light border-bottom">
         <div className="container">
           <div className="row align-items-center g-4">
@@ -46,7 +46,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* OUR STORY / MISSION */}
+      
       <section className="py-5">
         <div className="container">
           <div className="row g-4 align-items-center">
@@ -94,7 +94,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* FEATURES / WHAT THE SYSTEM DOES */}
+      
       <section className="py-5 bg-light border-top">
         <div className="container">
           <h2 className="h3 fw-bold mb-4 text-center">
@@ -132,7 +132,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* TECH SECTION (nice for your report) */}
+     
       <section className="py-5">
         <div className="container">
           <h2 className="h4 fw-bold mb-4 text-center">Technologies used</h2>

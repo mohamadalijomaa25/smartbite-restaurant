@@ -45,13 +45,13 @@ export const CartProvider = ({ children }) => {
   const placeOrder = () => {
     if (cartItems.length === 0) return null;
 
-    const orderId = Date.now().toString(); // simple unique id
+    const orderId = Date.now().toString(); 
     const newOrder = {
       id: orderId,
       items: cartItems,
       total: cartTotal,
       createdAt: new Date().toISOString(),
-      status: "received", // initial status
+      status: "received", 
     };
 
     setOrders((prev) => [...prev, newOrder]);
@@ -61,7 +61,7 @@ export const CartProvider = ({ children }) => {
 
   const getOrderById = (id) => orders.find((o) => o.id === id);
 
-  // 🚚 Move order along the timeline: received -> preparing -> out-for-delivery -> completed
+ 
   const advanceOrderStatus = (orderId) => {
     const statuses = ["received", "preparing", "out-for-delivery", "completed"];
 
@@ -71,7 +71,7 @@ export const CartProvider = ({ children }) => {
 
         const currentIndex = statuses.indexOf(order.status);
         if (currentIndex === -1 || currentIndex === statuses.length - 1) {
-          // unknown status or already at "completed"
+         
           return order;
         }
 
@@ -90,7 +90,7 @@ export const CartProvider = ({ children }) => {
     cartTotal,
     placeOrder,
     getOrderById,
-    advanceOrderStatus, // 👈 expose this to the rest of the app
+    advanceOrderStatus, 
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
