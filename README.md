@@ -7,7 +7,7 @@ It allows customers to browse a categorized menu, add items to their cart, place
 
 ## Live Demo  
 ### Deployed on Netlify  
- https://resilient-figolla-694906.netlify.app/
+
 
 ---
 
@@ -69,4 +69,4 @@ Make sure you have **Node.js** and **npm** installed.
 Clone the repository:
 
 ```bash
-git clone https://github.com/mohamadAlijomaa25/smartbite-restaurant.git
+git clone https://github.com/jawadmoussawi/smartbite-restaurant.git
