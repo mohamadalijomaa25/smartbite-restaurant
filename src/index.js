@@ -6,15 +6,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/main.css";
 import { CartProvider } from "./context/CartContext";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { AuthProvider } from "./context/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
+  <BrowserRouter>
+    <AuthProvider>
       <CartProvider>
         <App />
       </CartProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+    </AuthProvider>
+  </BrowserRouter>
 );

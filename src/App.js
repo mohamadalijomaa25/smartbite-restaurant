@@ -8,11 +8,12 @@ import MenuPage from "./pages/MenuPage";
 import Contact from "./pages/Contact";
 import OrderTracking from "./pages/OrderTracking";
 import ScrollToTop from "./components/ScrollToTop";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const App = () => {
   return (
     <div className="d-flex flex-column min-vh-100">
-      
       <ScrollToTop />
 
       <Navbar />
@@ -24,6 +25,8 @@ const App = () => {
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/order/:orderId" element={<OrderTracking />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>
 

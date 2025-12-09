@@ -1,72 +1,109 @@
-# SmartBite – Restaurant Ordering System
+# SmartBite – Full-Stack Restaurant Ordering System
 
-SmartBite is a modern, responsive restaurant ordering system built using ReactJS.  
-It allows customers to browse a categorized menu, add items to their cart, place orders, and track the status of each order—all in a clean and intuitive interface.
+SmartBite is a complete **full-stack restaurant ordering platform** built with  
+**ReactJS (frontend)** and **Node.js + Express + MySQL (backend)**.
 
----
-
-## Live Demo  
-### Deployed on Netlify  
- https://resilient-figolla-694906.netlify.app/
+Customers can browse the menu, add items to their cart, create an account, log in, place an order, and track its status in real time.  
+All data is stored in a real MySQL database, and authentication is handled using JWT.
 
 ---
 
-## Features
+## 🚀 Live Frontend Demo (Netlify)
 
-### Menu System  
-- Organized categories (Mains, Starters, Drinks, Desserts)  
-- High-quality images for each item  
-- Item descriptions and prices  
+https://resilient-figolla-694906.netlify.app/
 
-### Cart System  
-- Add items to cart  
-- Change quantity or remove items  
-- Live total price calculation  
-- Smooth and responsive layout  
+## 🔗 Backend API (Render / Railway)
 
-### Order Placement & Tracking  
-- Unique order ID generated automatically  
-- Dynamic order tracking flow:  
-  `Received → Preparing → Out for Delivery → Delivered`  
-- Clean and organized order summary  
-
-### Fully Responsive  
-- Works on **desktop**, **tablet**, and **mobile**  
-- Optimized layout using Bootstrap + custom CSS  
-
-### Client-side Routing  
-- Built with **React Router DOM**  
-- Smooth navigation between pages  
-- Netlify redirect rules implemented for SPA routing  
+_(Add your backend link here once deployed)_  
+Example:  
+`https://smartbite-api.onrender.com`
 
 ---
 
-## Technologies Used
+# ⭐ Features
 
-### **Frontend**
-- ReactJS  
-- React Router DOM  
-- Bootstrap 5  
-- Custom CSS  
+## 🍔 **Menu System**
 
-### **State Management**
-- React Context API (for cart & order storage)  
+- Organized menu by category (Mains, Drinks, Desserts, etc.)
+- Each item includes an image, description, and price
+- Responsive grid layout
 
-### **Build & Deployment**
-- Node.js  
-- Create React App  
-- Netlify (Live hosting)
+## 🛒 **Cart System**
+
+- Add items to cart
+- Adjust quantities or remove items
+- Live total price calculation
+- Cart persists while browsing
+
+## 👤 **Authentication (Backend)**
+
+- User Signup (with hashed passwords)
+- User Login (JWT authentication)
+- Protected routes (Orders tied to logged-in user)
+
+## 📦 **Order System (Full-Stack)**
+
+Orders are stored in **MySQL** with:
+
+- items (JSON)
+- total
+- user_id (FK)
+- order status (received → preparing → delivering → delivered)
+
+Supported features:
+
+- Create Order
+- Get Order Details
+- Get Logged-in User Orders
+- Update Order Status
+- Auto “Next Step” status upgrade
+
+## 📍 **Order Tracking Page**
+
+Fetches real order data from backend:
+
+- Order status timeline
+- Ordered items
+- Total cost
+- Created date
+
+## 📱 **Fully Responsive**
+
+Works smoothly on:
+
+- Desktop
+- Tablet
+- Mobile
 
 ---
 
-## Getting Started
+# 🛠 Technologies Used
 
-### Prerequisites  
-Make sure you have **Node.js** and **npm** installed.
+## **Frontend**
 
-### Installation
+- ReactJS
+- React Router DOM
+- Bootstrap 5
+- Custom CSS
+- Context API (Auth, Cart)
 
-Clone the repository:
+## **Backend**
 
-```bash
-git clone https://github.com/mohamadAlijomaa25/smartbite-restaurant.git
+- Node.js
+- Express.js
+- MySQL
+- JWT Authentication
+- bcrypt (password hashing)
+- CORS
+- .env for configuration
+
+## **Database**
+
+### Tables:
+
+- **Users** (id, name, email, password)
+- **Orders** (id, user_id, items JSON, total, status, created_at)
+
+---
+
+# 🗂 Project Structure
