@@ -8,9 +8,9 @@ All data is stored in a real MySQL database, and authentication is handled using
 
 ---
 
-## 🚀 Live Frontend Demo (Netlify)
-
-https://resilient-figolla-694906.netlify.app/
+## Live Demo  
+### Deployed on Netlify  
+ https://resilient-figolla-694906.netlify.app/
 
 ## 🔗 Backend API (Render / Railway)
 
@@ -89,21 +89,21 @@ Works smoothly on:
 
 ## **Backend**
 
-- Node.js
-- Express.js
-- MySQL
-- JWT Authentication
-- bcrypt (password hashing)
-- CORS
-- .env for configuration
-
-## **Database**
-
-### Tables:
-
-- **Users** (id, name, email, password)
-- **Orders** (id, user_id, items JSON, total, status, created_at)
+### **Build & Deployment**
+- Node.js  
+- Create React App  
+- Netlify (Live hosting)
 
 ---
 
-# 🗂 Project Structure
+## Getting Started
+
+### Prerequisites  
+Make sure you have **Node.js** and **npm** installed.
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/mohamadAlijomaa25/smartbite-restaurant.git
