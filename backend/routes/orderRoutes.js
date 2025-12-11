@@ -8,7 +8,13 @@ const router = express.Router();
 // All order routes require authentication
 router.use(auth);
 
-// POST /api/orders  → create new order
+// central place for allowed order statuses
+const ALLOWED_STATUSES = ["received", "preparing", "delivering", "delivered"];
+
+/**
+ * CREATE
+ * POST /api/orders  → create new order
+ */
 router.post("/", async (req, res) => {
   try {
     const userId = req.user.userId;
@@ -18,16 +24,27 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ message: "Items are required" });
     }
 
-    if (!total) {
-      return res.status(400).json({ message: "Total is required" });
+    const numericTotal = Number(total);
+    if (!Number.isFinite(numericTotal) || numericTotal <= 0) {
+      return res
+        .status(400)
+        .json({ message: "Total must be a positive number" });
     }
 
     // default status if not provided
     const orderStatus = status || "received";
 
+    // validate status if provided
+    if (!ALLOWED_STATUSES.includes(orderStatus)) {
+      return res.status(400).json({
+        message: "Invalid status value",
+        allowedStatuses: ALLOWED_STATUSES,
+      });
+    }
+
     const [result] = await pool.query(
       "INSERT INTO orders (user_id, items, total, status) VALUES (?, ?, ?, ?)",
-      [userId, JSON.stringify(items), total, orderStatus]
+      [userId, JSON.stringify(items), numericTotal, orderStatus]
     );
 
     return res.status(201).json({
@@ -40,7 +57,10 @@ router.post("/", async (req, res) => {
   }
 });
 
-// GET /api/orders  → list all orders for current user
+/**
+ * READ (all for current user)
+ * GET /api/orders  → list all orders for current user
+ */
 router.get("/", async (req, res) => {
   try {
     const userId = req.user.userId;
@@ -57,7 +77,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET /api/orders/:id  → get single order by id (only if it belongs to user)
+/**
+ * READ (single)
+ * GET /api/orders/:id  → get single order by id (only if it belongs to user)
+ */
 router.get("/:id", async (req, res) => {
   try {
     const userId = req.user.userId;
@@ -79,7 +102,10 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// PUT /api/orders/:id  → update status manually (e.g. to 'preparing', 'delivering', 'delivered')
+/**
+ * UPDATE (status)
+ * PUT /api/orders/:id  → update status manually (e.g. 'preparing', 'delivering')
+ */
 router.put("/:id", async (req, res) => {
   try {
     const userId = req.user.userId;
@@ -90,12 +116,11 @@ router.put("/:id", async (req, res) => {
       return res.status(400).json({ message: "Status is required" });
     }
 
-    // Optional: validate allowed status values
-    const allowed = ["received", "preparing", "delivering", "delivered"];
-    if (!allowed.includes(status)) {
-      return res
-        .status(400)
-        .json({ message: "Invalid status value", allowedStatuses: allowed });
+    if (!ALLOWED_STATUSES.includes(status)) {
+      return res.status(400).json({
+        message: "Invalid status value",
+        allowedStatuses: ALLOWED_STATUSES,
+      });
     }
 
     const [result] = await pool.query(
@@ -116,7 +141,10 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// OPTIONAL: PUT /api/orders/:id/next  → move to next status step
+/**
+ * UPDATE (next step)
+ * OPTIONAL: PUT /api/orders/:id/next  → move to next status step
+ */
 router.put("/:id/next", async (req, res) => {
   try {
     const userId = req.user.userId;
@@ -135,17 +163,16 @@ router.put("/:id/next", async (req, res) => {
     }
 
     const currentStatus = rows[0].status;
-    const statuses = ["received", "preparing", "delivering", "delivered"];
-    const currentIndex = statuses.indexOf(currentStatus);
+    const currentIndex = ALLOWED_STATUSES.indexOf(currentStatus);
 
-    if (currentIndex === -1 || currentIndex === statuses.length - 1) {
+    if (currentIndex === -1 || currentIndex === ALLOWED_STATUSES.length - 1) {
       return res.json({
         message: "Order is already at final status",
         status: currentStatus,
       });
     }
 
-    const nextStatus = statuses[currentIndex + 1];
+    const nextStatus = ALLOWED_STATUSES[currentIndex + 1];
 
     const [result] = await pool.query(
       "UPDATE orders SET status = ? WHERE id = ? AND user_id = ?",
@@ -168,7 +195,10 @@ router.put("/:id/next", async (req, res) => {
   }
 });
 
-// DELETE /api/orders/:id  → delete order (optional)
+/**
+ * DELETE
+ * DELETE /api/orders/:id  → delete order
+ */
 router.delete("/:id", async (req, res) => {
   try {
     const userId = req.user.userId;

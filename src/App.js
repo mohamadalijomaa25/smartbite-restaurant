@@ -10,6 +10,7 @@ import OrderTracking from "./pages/OrderTracking";
 import ScrollToTop from "./components/ScrollToTop";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import CartPage from "./pages/CartPage"; // ⬅️ NEW
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/order/:orderId" element={<OrderTracking />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/cart" element={<CartPage />} /> {/* ⬅️ NEW */}
         </Routes>
       </div>
 

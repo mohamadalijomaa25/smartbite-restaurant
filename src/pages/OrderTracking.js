@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
@@ -8,6 +9,7 @@ const OrderTracking = () => {
   const { orderId } = useParams();
   const { token, isLoggedIn } = useAuth();
   const navigate = useNavigate();
+  const { clearCart } = useCart();
 
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -89,6 +91,11 @@ const OrderTracking = () => {
         : parseFloat(order.total)
       : 0;
 
+  const handleBackToMenu = () => {
+    clearCart(); // reset cart
+    navigate("/menu"); // go back to menu page
+  };
+
   if (loading) {
     return (
       <div className="container py-5">
@@ -113,9 +120,9 @@ const OrderTracking = () => {
           </button>
         )}
 
-        <Link className="btn btn-outline-dark" to="/menu">
+        <button className="btn btn-outline-dark" onClick={handleBackToMenu}>
           Back to menu
-        </Link>
+        </button>
       </div>
     );
   }
@@ -127,9 +134,9 @@ const OrderTracking = () => {
         <p className="text-muted">
           We couldn't find this order. It may not belong to your account.
         </p>
-        <Link className="btn btn-dark" to="/menu">
+        <button className="btn btn-dark" onClick={handleBackToMenu}>
           Back to menu
-        </Link>
+        </button>
       </div>
     );
   }
@@ -214,9 +221,9 @@ const OrderTracking = () => {
         </div>
       </div>
 
-      <Link className="btn btn-dark" to="/menu">
+      <button className="btn btn-dark" onClick={handleBackToMenu}>
         Back to menu
-      </Link>
+      </button>
     </div>
   );
 };

@@ -13,16 +13,22 @@ export async function apiRequest(path, options = {}) {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const res = await fetch(`${API_URL}${path}`, {
-    ...options,
-    headers,
-  });
+  try {
+    const res = await fetch(`${API_URL}${path}`, {
+      ...options,
+      headers,
+    });
 
-  const data = await res.json().catch(() => ({}));
+    const data = await res.json().catch(() => ({}));
 
-  if (!res.ok) {
-    throw new Error(data.message || "Request failed");
+    if (!res.ok) {
+      console.error("API error:", res.status, data);
+      throw new Error(data.message || "Request failed");
+    }
+
+    return data;
+  } catch (err) {
+    console.error("Network or fetch error:", err);
+    throw err;
   }
-
-  return data;
 }

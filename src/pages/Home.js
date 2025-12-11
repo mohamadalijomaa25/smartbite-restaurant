@@ -3,12 +3,9 @@ import { Link } from "react-router-dom";
 import menuItems from "../data/menuItems";
 
 const Home = () => {
- 
   const bestSellerItems = menuItems.filter((item) => item.image);
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
- 
   useEffect(() => {
     if (bestSellerItems.length === 0) return;
 
@@ -19,7 +16,6 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [bestSellerItems.length]);
 
- 
   useEffect(() => {
     bestSellerItems.forEach((item) => {
       const img = new Image();
@@ -31,15 +27,12 @@ const Home = () => {
     bestSellerItems.length > 0 ? bestSellerItems[currentIndex] : null;
 
   return (
-    <main>
-      
-      <section
-        className="py-5"
-        style={{ backgroundColor: "#ffffffff" }} 
-      >
+    <main className="home-page">
+      {/* HERO SECTION */}
+      <section className="py-5">
         <div className="container">
           <div className="row align-items-center g-4">
-            
+            {/* Left: Text */}
             <div className="col-lg-6">
               <span
                 className="badge rounded-pill mb-3"
@@ -48,12 +41,12 @@ const Home = () => {
                 New • SmartBite Deals
               </span>
 
-              <h1 className="display-4 fw-bold mb-3">
+              <h1 className="display-4 fw-bold mb-3 text-white">
                 Craving something{" "}
-                <span style={{ color: "#e53935" }}>delicious?</span>
+                <span style={{ color: "#ffb74d" }}>delicious?</span>
               </h1>
 
-              <p className="lead text-dark mb-4">
+              <p className="lead text-light mb-4">
                 Order your favorite burgers, fries, and drinks from SmartBite
                 and get them delivered hot and fresh in Baalbek.
               </p>
@@ -62,17 +55,20 @@ const Home = () => {
                 <Link to="/menu" className="btn btn-dark btn-lg px-4">
                   Order Now
                 </Link>
-                <Link to="/about" className="btn btn-outline-dark btn-lg px-4">
+                <Link
+                  to="/about"
+                  className="btn btn-outline-light btn-lg px-4"
+                >
                   About SmartBite
                 </Link>
               </div>
 
-              <p className="small text-muted mt-3 mb-0">
+              <p className="small text-light mt-3 mb-0">
                 Open every day • Fast delivery • Fresh ingredients
               </p>
             </div>
 
-            
+            {/* Right: Slideshow card */}
             <div className="col-lg-6">
               <div
                 className="card border-0 shadow-lg rounded-4 overflow-hidden"
@@ -88,7 +84,6 @@ const Home = () => {
                         width: "100%",
                         height: "260px",
                         objectFit: "cover",
-                        
                       }}
                     />
                   )}
@@ -119,10 +114,12 @@ const Home = () => {
         </div>
       </section>
 
-      
-      <section className="py-5 bg-light">
+      {/* FEATURED DEALS */}
+      <section className="py-5">
         <div className="container">
-          <h2 className="h3 fw-bold mb-4 text-center">Featured Deals</h2>
+          <h2 className="h3 fw-bold mb-4 text-center text-white">
+            Featured Deals
+          </h2>
           <div className="row g-4">
             <div className="col-md-4">
               <div className="card h-100 shadow-sm border-0 rounded-4">
@@ -179,10 +176,12 @@ const Home = () => {
         </div>
       </section>
 
-      
+      {/* HOW IT WORKS */}
       <section className="py-5">
         <div className="container">
-          <h2 className="h3 fw-bold mb-4 text-center">How it works</h2>
+          <h2 className="h3 fw-bold mb-4 text-center text-white">
+            How it works
+          </h2>
           <div className="row g-4 text-center">
             <div className="col-md-4">
               <div className="p-3">
@@ -198,8 +197,8 @@ const Home = () => {
                 >
                   1
                 </div>
-                <h6 className="fw-semibold">Browse the Menu</h6>
-                <p className="text-muted small mb-0">
+                <h6 className="fw-semibold text-white">Browse the Menu</h6>
+                <p className="text-light small mb-0">
                   Explore burgers, sides, drinks, and desserts.
                 </p>
               </div>
@@ -219,8 +218,8 @@ const Home = () => {
                 >
                   2
                 </div>
-                <h6 className="fw-semibold">Add to Cart</h6>
-                <p className="text-muted small mb-0">
+                <h6 className="fw-semibold text-white">Add to Cart</h6>
+                <p className="text-light small mb-0">
                   Customize quantities and review your order.
                 </p>
               </div>
@@ -240,8 +239,8 @@ const Home = () => {
                 >
                   3
                 </div>
-                <h6 className="fw-semibold">Track Your Order</h6>
-                <p className="text-muted small mb-0">
+                <h6 className="fw-semibold text-white">Track Your Order</h6>
+                <p className="text-light small mb-0">
                   Follow your order status from received to delivered.
                 </p>
               </div>

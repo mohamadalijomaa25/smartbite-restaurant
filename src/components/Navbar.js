@@ -1,13 +1,20 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
-  const { cartItems } = useCart();
+  const { cartItems, clearCart } = useCart();
   const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const { user, logout, isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    clearCart();
+    navigate("/");
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
@@ -16,7 +23,6 @@ const Navbar = () => {
           SmartBite
         </Link>
 
-        {/* Mobile toggle button */}
         <button
           className="navbar-toggler"
           type="button"
@@ -30,72 +36,65 @@ const Navbar = () => {
         </button>
 
         <div className="collapse navbar-collapse" id="mainNavbar">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link" to="/">
                 Home
               </NavLink>
             </li>
-
             <li className="nav-item">
               <NavLink className="nav-link" to="/about">
                 About
               </NavLink>
             </li>
-
             <li className="nav-item">
               <NavLink className="nav-link" to="/menu">
                 Menu
               </NavLink>
             </li>
-
             <li className="nav-item">
               <NavLink className="nav-link" to="/contact">
                 Contact
               </NavLink>
             </li>
+          </ul>
 
-            {/* AUTH SECTION */}
-            {!isLoggedIn ? (
+          {/* Right side: auth + cart */}
+          <div className="d-flex align-items-center">
+            {isLoggedIn ? (
               <>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/login">
-                    Login
-                  </NavLink>
-                </li>
-
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/signup">
-                    Signup
-                  </NavLink>
-                </li>
+                <span className="me-2 small text-muted">
+                  Hi, {user?.name || "Guest"}
+                </span>
+                <button
+                  className="btn btn-outline-dark btn-sm me-2"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
               </>
             ) : (
               <>
-                {/* Show username when logged in */}
-                <li className="nav-item d-flex align-items-center px-2">
-                  <span className="small fw-semibold">
-                    Hi, {user?.name || "User"}
-                  </span>
-                </li>
-
-                <li className="nav-item">
-                  <button
-                    className="btn btn-sm btn-outline-dark ms-2"
-                    onClick={logout}
-                  >
-                    Logout
-                  </button>
-                </li>
+                <Link
+                  className="btn btn-outline-dark btn-sm me-2"
+                  to="/login"
+                >
+                  Login
+                </Link>
+                <Link
+                  className="btn btn-dark btn-sm me-2"
+                  to="/signup"
+                >
+                  Sign Up
+                </Link>
               </>
             )}
-          </ul>
 
-          {/* Cart Button */}
-          <Link to="/menu" className="btn btn-dark ms-lg-3">
-            Cart ({itemCount})
-          </Link>
+            {/* UPDATED → directs to /cart */}
+            <Link to="/cart" className="btn btn-dark">
+              Cart ({itemCount})
+            </Link>
+          </div>
         </div>
       </div>
     </nav>

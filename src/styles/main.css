@@ -1,8 +1,57 @@
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+/* ========== SMARTBITE DESIGN TOKENS (no visual change yet) ========== */
+
+:root {
+  /* Colors */
+  --sb-bg: #fff7e6;
+  --sb-bg-alt: #ffffff;
+  --sb-primary: #ffba00;
+  --sb-primary-dark: #e09f00;
+  --sb-accent: #ff3b30;
+  --sb-accent-soft: rgba(255, 59, 48, 0.12);
+  --sb-text: #111827;
+  --sb-text-muted: #6b7280;
+  --sb-border-subtle: #e5e7eb;
+
+  /* Radius */
+  --sb-radius-lg: 18px;
+  --sb-radius-xl: 26px;
+  --sb-radius-pill: 999px;
+
+  /* Shadows & transitions */
+  --sb-shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
+  --sb-shadow-subtle: 0 8px 18px rgba(15, 23, 42, 0.08);
+  --sb-transition-fast: 0.16s ease-out;
+  --sb-transition: 0.22s ease-in-out;
+
+  /* Layout */
+  --sb-max-width: 1120px;
 }
 
+/* Global base styles */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Reusable layout container (only affects elements that use this class) */
+.sb-container {
+  width: 100%;
+  max-width: var(--sb-max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ========== EXISTING STYLES ========== */
 
 @media (max-width: 576px) {
   .container {
@@ -11,25 +60,22 @@ body {
   }
 }
 
-
 @media (min-width: 992px) {
-  
   .menu-scroll {
     overflow: visible;
     max-height: none;
     padding-right: 0;
   }
 
-  
   .cart-scroll {
     position: sticky;
-    top: 100px; 
-    max-height: calc(100vh - 120px); 
+    top: 0; /* <<< was 100px – now cart sticks to top */
+    max-height: calc(100vh - 20px);
     overflow-y: auto;
     padding-right: 6px;
+    margin-top: 0; /* ensure no extra gap above */
   }
 }
-
 
 .hero-section {
   min-height: 100vh;
@@ -43,8 +89,12 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top left, rgba(0, 0, 0, 0.2), transparent),
-              rgba(0, 0, 0, 0.6);
+  background: radial-gradient(
+      circle at top left,
+      rgba(0, 0, 0, 0.2),
+      transparent
+    ),
+    rgba(0, 0, 0, 0.6);
 }
 
 .hero-content {
@@ -53,7 +103,6 @@ body {
   display: flex;
   align-items: center;
 }
-
 
 .hero-card {
   max-width: 560px;
@@ -69,7 +118,6 @@ body {
   transform: translateY(12px);
 }
 
-
 @keyframes hero-fade-in {
   from {
     opacity: 0;
@@ -80,7 +128,6 @@ body {
     transform: translateY(0);
   }
 }
-
 
 @media (max-width: 767.98px) {
   .hero-content {
@@ -96,4 +143,84 @@ body {
   .hero-card .display-4 {
     font-size: 2.2rem;
   }
+}
+
+/* ---------- Auth Pages (Login & Signup) ---------- */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* use public/ path, not Windows file path */
+  background-image: url("../assets/images/backgrounddb.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  padding: 40px 0 80px; /* bottom padding for breathing room */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Blurred dark overlay */
+.auth-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.auth-card {
+  position: relative;
+  z-index: 10;
+
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(4px);
+  border-radius: 1.25rem;
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile tweak */
+@media (max-width: 576px) {
+  .auth-page {
+    padding-top: 24px;
+  }
+}
+
+/* ---------- Home Page Fullscreen Blurred Background ---------- */
+
+.home-page {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+
+  /* same background image (or change path if you want a different one) */
+  background-image: url("../assets/images/backgrounddb.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  padding-top: 40px;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.home-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 0;
+}
+
+.home-page > * {
+  position: relative;
+  z-index: 10;
 }
