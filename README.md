@@ -1,110 +1,107 @@
-# SmartBite – Full-Stack Restaurant Ordering System
+# 🍔 SmartBite – Full-Stack Restaurant Ordering System
 
-SmartBite is a complete **full-stack restaurant ordering platform** built with  
-**ReactJS (frontend)** and **Node.js + Express + MySQL (backend)**.
-
-Customers can browse the menu, add items to their cart, create an account, log in, place an order, and track its status in real time.  
-All data is stored in a real MySQL database, and authentication is handled securely using JWT.
+SmartBite is a full-stack restaurant ordering web application that allows users to browse a menu, place orders, and track their order status in real time.  
+The project demonstrates backend development using Node.js, database integration with MySQL, user authentication, and deployment.
 
 ---
 
-## 🚀 Live Demo (Frontend – Netlify)
+## 🚀 Live Demo
 
-https://resilient-figolla-694906.netlify.app/
+- **Frontend (Netlify):**  
+  https://smartbiterestaurantlb.netlify.app/
 
-## 🔗 Backend API (Render / Railway)
-
-_Add backend URL once deployed_  
-Example:  
-`https://smartbite-api.onrender.com`
+- **Backend API (Render):**  
+  https://smartbite-backend.onrender.com
 
 ---
 
-# ⭐ Features
+## 📌 Features
 
-## 🍔 Menu System
+### 👤 Authentication
+- User signup and login
+- Password hashing using bcrypt
+- JWT-based authentication
 
-- Categorized menu (Mains, Drinks, Desserts, etc.)
-- Item images, descriptions, and prices
-- Responsive grid layout
+### 🍽️ Menu & Cart
+- Browse menu items by category
+- Add and remove items from cart
+- Update item quantities
+- Cart managed using React Context API
 
-## 🛒 Cart System
+### 🛒 Orders
+- Place orders (authenticated users only)
+- Orders stored in MySQL database
+- Track order status:
+  - Received
+  - Preparing
+  - Delivering
+  - Delivered
+- Full CRUD operations on orders
 
-- Add items to cart
-- Update quantities / remove items
-- Live total price calculation
+### 📬 Contact
+- Contact form connected to backend
+- Messages stored in database
 
-## 👤 Authentication (Backend)
-
-- User registration (Signup)
-- Secure login with **JWT tokens**
-- Password hashing with **bcrypt**
-- Protected routes (orders require login)
-
-## 📦 Order System (Full Stack)
-
-Orders are stored in **MySQL** with:
-
-- Items (JSON)
-- Total amount
-- User ID (foreign key)
-- Status (`received → preparing → delivering → delivered`)
-- Timestamp
-
-Features:
-
-- Create order (POST)
-- Get all user orders (GET)
-- Get specific order (GET)
-- Update status (PUT)
-- Move to next status automatically (PUT)
-
-## 📍 Order Tracking Page
-
-- Fetches live order status from backend
-- Shows progress steps
-- Lists ordered items with quantities and prices
-- Displays total and timestamp
-
-## 📱 Responsive UI
-
-Works smoothly on:
-
-- Desktop
-- Tablet
-- Mobile phones
+### 🎨 UI / UX
+- Responsive design
+- Modern UI with blurred background effects
+- Clean navigation and layout
 
 ---
 
-# 🛠 Technologies Used
+## 🛠️ Technologies Used
 
-## **Frontend**
-
-- ReactJS
-- React Router DOM
-- Bootstrap 5
+### Frontend
+- React.js
+- React Router
+- Context API
+- Bootstrap
 - Custom CSS
-- Context API (Cart, Auth)
-- Netlify (hosting)
 
-## **Backend**
-
+### Backend
 - Node.js
 - Express.js
-- MySQL (via mysql2)
 - JWT Authentication
-- bcrypt (password hashing)
-- CORS
-- dotenv (.env configuration)
+- bcrypt
+- MySQL (mysql2)
 
-## **Tools**
-
-- VS Code
-- XAMPP (MySQL server)
-- Git & GitHub
-- Netlify (frontend hosting)
-- Render / Railway (backend hosting)
+### Deployment & Tools
+- Frontend: Netlify
+- Backend: Render
+- Database: MySQL (XAMPP for local development)
+- Version Control: Git & GitHub
 
 ---
 
-# 🗂 Project Structure
+## 🗄️ Database Structure
+
+### users
+| Field | Type |
+|------|------|
+| id | INT (Primary Key) |
+| name | VARCHAR |
+| email | VARCHAR |
+| password | VARCHAR (hashed) |
+| role | VARCHAR |
+| created_at | TIMESTAMP |
+
+### orders
+| Field | Type |
+|------|------|
+| id | INT (Primary Key) |
+| user_id | INT (Foreign Key) |
+| items | JSON |
+| total | DECIMAL |
+| status | ENUM |
+| created_at | TIMESTAMP |
+
+### contact_messages
+| Field | Type |
+|------|------|
+| id | INT (Primary Key) |
+| name | VARCHAR |
+| email | VARCHAR |
+| message | TEXT |
+| created_at | TIMESTAMP |
+
+---
