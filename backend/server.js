@@ -10,22 +10,27 @@ const contactRoutes = require("./routes/contactRoutes");
 const app = express();
 
 /**
- * CORS
- * - Allows your frontend domains + localhost for dev
+ * ✅ CORS CONFIG
+ * - Allows:
+ *   • localhost (development)
+ *   • ANY Netlify site (*.netlify.app)
+ *   • requests without origin (Postman, mobile webviews)
  */
-const allowedOrigins = [
-  "http://localhost:3000",
-  "http://127.0.0.1:3000",
-  "https://smartbiterestaurantlb.netlify.app",
-];
-
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin (Postman, curl, mobile apps)
+      // Allow requests with no origin (Postman, curl, mobile browser)
       if (!origin) return callback(null, true);
 
-      if (allowedOrigins.includes(origin)) return callback(null, true);
+      const isLocalhost =
+        origin === "http://localhost:3000" ||
+        origin === "http://127.0.0.1:3000";
+
+      const isNetlify = origin.endsWith(".netlify.app");
+
+      if (isLocalhost || isNetlify) {
+        return callback(null, true);
+      }
 
       return callback(new Error("Not allowed by CORS: " + origin));
     },
@@ -35,7 +40,7 @@ app.use(
   })
 );
 
-// ✅ FIX: Express 5/router doesn't like "*"
+// ✅ Express 5 safe preflight handler (DO NOT use "*")
 app.options(/.*/, cors());
 
 app.use(express.json());
