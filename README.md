@@ -11,7 +11,7 @@ The project demonstrates backend development using Node.js, database integration
   https://smartbiterestaurantlb.netlify.app/
 
 - **Backend API (Render):**  
-  https://smartbite-backend.onrender.com
+  https://smartbite-backend-3ixo.onrender.com
 
 ---
 
