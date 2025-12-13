@@ -1,5 +1,5 @@
-// backend/server.js
 require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 
@@ -10,26 +10,22 @@ const contactRoutes = require("./routes/contactRoutes");
 const app = express();
 
 /**
- * IMPORTANT:
- * - Allow your Netlify domain + localhost
- * - Allow Authorization header (JWT)
+ * CORS
+ * - Allows your frontend domains + localhost for dev
  */
 const allowedOrigins = [
   "http://localhost:3000",
   "http://127.0.0.1:3000",
-  "https://smartbiterestaurantlb.netlify.app", // your current Netlify
-  // if you create a new Netlify link, add it here too
+  "https://smartbiterestaurantlb.netlify.app",
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow Postman / curl (no origin)
+      // allow requests with no origin (Postman, curl, mobile apps)
       if (!origin) return callback(null, true);
 
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
+      if (allowedOrigins.includes(origin)) return callback(null, true);
 
       return callback(new Error("Not allowed by CORS: " + origin));
     },
@@ -39,7 +35,9 @@ app.use(
   })
 );
 
-app.options("*", cors()); // handle preflight
+// ✅ FIX: Express 5/router doesn't like "*"
+app.options(/.*/, cors());
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
