@@ -18,17 +18,20 @@ The project demonstrates backend development using Node.js, database integration
 ## 📌 Features
 
 ### 👤 Authentication
+
 - User signup and login
 - Password hashing using bcrypt
 - JWT-based authentication
 
 ### 🍽️ Menu & Cart
+
 - Browse menu items by category
 - Add and remove items from cart
 - Update item quantities
 - Cart managed using React Context API
 
 ### 🛒 Orders
+
 - Place orders (authenticated users only)
 - Orders stored in MySQL database
 - Track order status:
@@ -39,10 +42,12 @@ The project demonstrates backend development using Node.js, database integration
 - Full CRUD operations on orders
 
 ### 📬 Contact
+
 - Contact form connected to backend
 - Messages stored in database
 
 ### 🎨 UI / UX
+
 - Responsive design
 - Modern UI with blurred background effects
 - Clean navigation and layout
@@ -52,6 +57,7 @@ The project demonstrates backend development using Node.js, database integration
 ## 🛠️ Technologies Used
 
 ### Frontend
+
 - React.js
 - React Router
 - Context API
@@ -59,6 +65,7 @@ The project demonstrates backend development using Node.js, database integration
 - Custom CSS
 
 ### Backend
+
 - Node.js
 - Express.js
 - JWT Authentication
@@ -66,6 +73,7 @@ The project demonstrates backend development using Node.js, database integration
 - MySQL (mysql2)
 
 ### Deployment & Tools
+
 - Frontend: Netlify
 - Backend: Render
 - Database: MySQL (XAMPP for local development)
@@ -76,32 +84,35 @@ The project demonstrates backend development using Node.js, database integration
 ## 🗄️ Database Structure
 
 ### users
-| Field | Type |
-|------|------|
-| id | INT (Primary Key) |
-| name | VARCHAR |
-| email | VARCHAR |
-| password | VARCHAR (hashed) |
-| role | VARCHAR |
-| created_at | TIMESTAMP |
+
+| Field      | Type              |
+| ---------- | ----------------- |
+| id         | INT (Primary Key) |
+| name       | VARCHAR           |
+| email      | VARCHAR           |
+| password   | VARCHAR (hashed)  |
+| role       | VARCHAR           |
+| created_at | TIMESTAMP         |
 
 ### orders
-| Field | Type |
-|------|------|
-| id | INT (Primary Key) |
-| user_id | INT (Foreign Key) |
-| items | JSON |
-| total | DECIMAL |
-| status | ENUM |
-| created_at | TIMESTAMP |
+
+| Field      | Type              |
+| ---------- | ----------------- |
+| id         | INT (Primary Key) |
+| user_id    | INT (Foreign Key) |
+| items      | JSON              |
+| total      | DECIMAL           |
+| status     | ENUM              |
+| created_at | TIMESTAMP         |
 
 ### contact_messages
-| Field | Type |
-|------|------|
-| id | INT (Primary Key) |
-| name | VARCHAR |
-| email | VARCHAR |
-| message | TEXT |
-| created_at | TIMESTAMP |
+
+| Field      | Type              |
+| ---------- | ----------------- |
+| id         | INT (Primary Key) |
+| name       | VARCHAR           |
+| email      | VARCHAR           |
+| message    | TEXT              |
+| created_at | TIMESTAMP         |
 
 ---
