@@ -18,7 +18,7 @@ const app = express();
 const allowedOrigins = new Set([
   "http://localhost:3000",
   "http://127.0.0.1:3000",
-  "https://smartbiterestaurantlb.netlify.app",
+  "https://stellar-pixie-5dfb67.netlify.app",
 ]);
 
 app.use(
