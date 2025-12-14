@@ -1,3 +1,4 @@
+// backend/server.js
 require("dotenv").config();
 
 const express = require("express");
@@ -10,30 +11,37 @@ const contactRoutes = require("./routes/contactRoutes");
 const app = express();
 
 /**
- * ✅ CORS (safe for Netlify + localhost + mobile)
+ * ✅ CORS (Netlify + Vercel + localhost + mobile)
  * - Allows localhost for dev
- * - Allows any *.netlify.app (so if you changed Netlify account/site, it still works)
- * - Allows your specific old domain too (optional)
+ * - Allows any *.netlify.app
+ * - Allows any *.vercel.app
+ * - Prevents crashes (never throws in origin callback)
  */
 const allowedOrigins = new Set([
   "http://localhost:3000",
   "http://127.0.0.1:3000",
+
+  // Keep your previous Netlify site (optional)
   "https://stellar-pixie-5dfb67.netlify.app",
 ]);
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // allow requests with no origin (Postman, curl, some mobile browsers)
+      // Allow requests with no origin (Postman, curl, some mobile browsers)
       if (!origin) return callback(null, true);
 
-      // allow your known list
+      // Allow known list
       if (allowedOrigins.has(origin)) return callback(null, true);
 
-      // allow any Netlify subdomain (useful if you created a new Netlify site)
+      // Allow any Netlify subdomain
       if (origin.endsWith(".netlify.app")) return callback(null, true);
 
-      return callback(null, false); // don't throw (prevents crashing)
+      // ✅ Allow any Vercel subdomain
+      if (origin.endsWith(".vercel.app")) return callback(null, true);
+
+      // Block everything else (no crash)
+      return callback(null, false);
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -41,14 +49,12 @@ app.use(
   })
 );
 
-// ✅ handle JSON
+// JSON body parsing
 app.use(express.json());
 
-// ✅ explicit preflight handler (NO "*" wildcard)
+// ✅ Preflight handler (Express 5 safe)
 app.use((req, res, next) => {
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
+  if (req.method === "OPTIONS") return res.sendStatus(204);
   next();
 });
 
