@@ -7,8 +7,8 @@ The project demonstrates backend development using Node.js, database integration
 
 ## 🚀 Live Demo
 
-- **Frontend (Netlify):**  
-  https://stellar-pixie-5dfb67.netlify.app/
+- **Frontend (Vercel):**  
+  https://smartbite-restaurant.vercel.app/
 
 - **Backend API (Render):**  
   https://smartbite-backend-3ixo.onrender.com
