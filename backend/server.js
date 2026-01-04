@@ -1,4 +1,6 @@
 // backend/server.js
+// Author: Mohamad Ali Jomaa
+
 require("dotenv").config();
 
 const express = require("express");
