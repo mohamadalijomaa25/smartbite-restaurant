@@ -1,3 +1,7 @@
+## Author
+
+Mohamad Ali Jomaa
+
 # 🍔 SmartBite – Full-Stack Restaurant Ordering System
 
 SmartBite is a full-stack restaurant ordering web application that allows users to browse a menu, place orders, and track their order status in real time.  
