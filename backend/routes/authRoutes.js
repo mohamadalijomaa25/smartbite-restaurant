@@ -26,17 +26,41 @@ router.post("/signup", async (req, res) => {
 
     const hashed = await bcrypt.hash(password, 10);
 
+    // role default = customer (DB default), but we can also insert explicitly if you want
     const [result] = await pool.query(
       "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
       [name, email, hashed]
     );
 
-    res
-      .status(201)
-      .json({ message: "User created successfully", userId: result.insertId });
+    const newUserId = result.insertId;
+
+    // IMPORTANT: fetch the created user including role (so role exists)
+    const [rows] = await pool.query(
+      "SELECT id, name, email, role FROM users WHERE id = ?",
+      [newUserId]
+    );
+    const newUser = rows[0];
+
+    // create token with role
+    const token = jwt.sign(
+      { userId: newUser.id, email: newUser.email, role: newUser.role || "customer" },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    return res.status(201).json({
+      message: "User created successfully",
+      token,
+      user: {
+        id: newUser.id,
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role || "customer",
+      },
+    });
   } catch (err) {
     console.error("Signup error:", err);
-    res.status(500).json({ message: "Server error" });
+    return res.status(500).json({ message: "Server error" });
   }
 });
 
@@ -66,19 +90,24 @@ router.post("/login", async (req, res) => {
     }
 
     const token = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.id, email: user.email, role: user.role || "customer" },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
 
-    res.json({
+    return res.json({
       message: "Login successful",
       token,
-      user: { id: user.id, name: user.name, email: user.email },
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role || "customer",
+      },
     });
   } catch (err) {
     console.error("Login error:", err);
-    res.status(500).json({ message: "Server error" });
+    return res.status(500).json({ message: "Server error" });
   }
 });
 

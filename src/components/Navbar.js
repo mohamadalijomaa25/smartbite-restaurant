@@ -57,6 +57,21 @@ const Navbar = () => {
                 Contact
               </NavLink>
             </li>
+            {isLoggedIn && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/my-orders">
+                  My Orders
+                </NavLink>
+              </li>
+            )}
+
+            {isLoggedIn && user?.role === "admin" && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/admin/orders">
+                  Admin
+                </NavLink>
+              </li>
+            )}
           </ul>
 
           {/* Right side: auth + cart */}
@@ -75,16 +90,10 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Link
-                  className="btn btn-outline-dark btn-sm me-2"
-                  to="/login"
-                >
+                <Link className="btn btn-outline-dark btn-sm me-2" to="/login">
                   Login
                 </Link>
-                <Link
-                  className="btn btn-dark btn-sm me-2"
-                  to="/signup"
-                >
+                <Link className="btn btn-dark btn-sm me-2" to="/signup">
                   Sign Up
                 </Link>
               </>

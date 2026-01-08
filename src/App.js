@@ -10,7 +10,9 @@ import OrderTracking from "./pages/OrderTracking";
 import ScrollToTop from "./components/ScrollToTop";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import CartPage from "./pages/CartPage"; // ⬅️ NEW
+import CartPage from "./pages/CartPage";
+import MyOrders from "./pages/MyOrders";
+import AdminOrders from "./pages/AdminOrders";
 
 const App = () => {
   return (
@@ -28,7 +30,10 @@ const App = () => {
           <Route path="/order/:orderId" element={<OrderTracking />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/cart" element={<CartPage />} /> {/* ⬅️ NEW */}
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/my-orders" element={<MyOrders />} />
+          <Route path="/my-orders" element={<MyOrders />} />
+          <Route path="/admin/orders" element={<AdminOrders />} />
         </Routes>
       </div>
 
